@@ -14,14 +14,17 @@ import drawingObjects.*;
 public class ObjectHandler {
 	private ArrayList<DrawingObject> m_objects;
 	private ArrayList<DrawingObject> m_objectHistory;
+	private DrawingObject m_copyObject;
 	private int m_selectedObjectIndex;
 	private boolean m_hasSelected;
+	private JFrame m_frame;
 	
-	public ObjectHandler(){
+	public ObjectHandler(JFrame frame){
 		m_objects = new ArrayList<DrawingObject>();
 		m_objectHistory = new ArrayList<DrawingObject>();
 		m_selectedObjectIndex = 0;
 		m_hasSelected = false;
+		m_frame = frame;
 	}
 	
 	//METHODS
@@ -33,43 +36,85 @@ public class ObjectHandler {
 		return m_objects.size();
 	}
 	
-	public void updateAll(JFrame frame, int x, int y){
+	public void updateAll(int x, int y){
+		//takes in x and y coordinates because update function takes x and y coordinates to update an object that is being adjusted
 		//CLEAR SCREEN
 		
 		for(int i = 0; i < this.size(); i++){
-			m_objects.get(i).update(frame, x, y);
+			m_objects.get(i).update(m_frame, x, y);
+		}
+	}
+	public void updateAll(){
+		//CLEAR SCREEN
+		
+		
+		for(int i = 0; i < this.size(); i++){
+			m_objects.get(i).update(m_frame);
 		}
 	}
 	
 	//Cut Copy and Paste
 	public void select(int x, int y){
-		int selectedID = 0;
 		
 		//Reversed to select top-most object
 		for (int i = this.size(); i >= 0; i--){
 			if(m_objects.get(i).inRegion(x,  y)){
-				m_selectedObjectIndex = i;
-				m_hasSelected = true;
+				select(i);
 				break;
 			}
 		}
 	}
+	public void select(int index){
+		m_selectedObjectIndex = index;
+		m_hasSelected = true;
+		
+		//TODO: Modify selected object. Add little squares around object?
+	}
 	
 	public void drag(int mouse_x, int mouse_y, int x_disp, int y_disp){
 		//Make sure mouse is within selected objects region
-		if(getSelected().inRegion(mouse_x, mouse_y)){
-			//TODO: If it is, move the object based on displacement values
-			
+		try {
+			if(getSelected().inRegion(mouse_x, mouse_y)){
+				//If it is, move the object based on displacement values
+				getSelected().shift(x_disp, y_disp);
+			}
+		} catch (Exception e) {
+			//If no selected object, do NOTHING
 		}
 		
-		//TODO: Call update
+		//Call update
+		this.updateAll();
 	}
 	
-	public DrawingObject getSelected(){
+	public void copy() throws Exception{
+		if(m_hasSelected){
+			m_copyObject = m_objects.get(m_selectedObjectIndex);
+		} else {
+			throw new Exception("No selected Object");
+		}
+	}
+	
+	public void cut() throws Exception{
+		if(m_hasSelected){
+			copy();
+			m_objects.remove(m_selectedObjectIndex);
+			updateAll();
+		}
+	}
+	
+	public void paste(){
+		if(m_copyObject != null){
+			//TODO: AGAIN, is it size()? Or size-1?
+			m_objects.add(m_copyObject);
+			this.select(m_objects.size());
+		}
+	}
+	
+	public DrawingObject getSelected() throws Exception{
 		if(m_hasSelected){
 			return m_objects.get(m_selectedObjectIndex);
 		} else {
-			return null;
+			throw new Exception("No selected object");
 		}
 	}
 	

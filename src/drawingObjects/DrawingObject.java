@@ -31,6 +31,10 @@ public class DrawingObject {
 		draw(frame);
 	}
 	
+	public void update (JFrame frame){
+		draw(frame);
+	}
+	
 	public void shift(int x_shift, int y_shift){
 		m_x_start += x_shift;
 		m_x_end += x_shift;
@@ -51,10 +55,6 @@ public class DrawingObject {
 	}
 	
 	public void stopAdjusting(){
-		m_isAdjusting = false;
-	}
-	
-	public void stopSelected(){
 		m_isAdjusting = false;
 	}
 	
