@@ -7,7 +7,6 @@ public class DrawingObject {
 	private int m_x_start, m_y_start, m_x_end, m_y_end;
 	private String m_color;
 	private boolean m_isAdjusting;
-	private boolean m_isSelected;
 	
 	//METHODS
 	public DrawingObject(int x_start, int y_start, String color){
@@ -17,7 +16,6 @@ public class DrawingObject {
 		m_y_end = y_start;
 		m_color = color;
 		m_isAdjusting = true;
-		this.select();
 	}
 	
 	/**
@@ -29,9 +27,15 @@ public class DrawingObject {
 		if(m_isAdjusting){
 			m_x_end = x;
 			m_y_end = y;
-			m_isSelected = true;
 		}
 		draw(frame);
+	}
+	
+	public void shift(int x_shift, int y_shift){
+		m_x_start += x_shift;
+		m_x_end += x_shift;
+		m_y_start += y_shift;
+		m_y_end += y_shift;
 	}
 	
 	/**
@@ -52,10 +56,6 @@ public class DrawingObject {
 	
 	public void stopSelected(){
 		m_isAdjusting = false;
-		m_isSelected = false;
-	}
-	public void select(){
-		m_isSelected = true;
 	}
 	
 	/**

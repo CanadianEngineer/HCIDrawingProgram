@@ -14,10 +14,14 @@ import drawingObjects.*;
 public class ObjectHandler {
 	private ArrayList<DrawingObject> m_objects;
 	private ArrayList<DrawingObject> m_objectHistory;
+	private int m_selectedObjectIndex;
+	private boolean m_hasSelected;
 	
 	public ObjectHandler(){
 		m_objects = new ArrayList<DrawingObject>();
 		m_objectHistory = new ArrayList<DrawingObject>();
+		m_selectedObjectIndex = 0;
+		m_hasSelected = false;
 	}
 	
 	//METHODS
@@ -44,9 +48,28 @@ public class ObjectHandler {
 		//Reversed to select top-most object
 		for (int i = this.size(); i >= 0; i--){
 			if(m_objects.get(i).inRegion(x,  y)){
-				m_objects.get(i).select();
+				m_selectedObjectIndex = i;
+				m_hasSelected = true;
 				break;
 			}
+		}
+	}
+	
+	public void drag(int mouse_x, int mouse_y, int x_disp, int y_disp){
+		//Make sure mouse is within selected objects region
+		if(getSelected().inRegion(mouse_x, mouse_y)){
+			//TODO: If it is, move the object based on displacement values
+			
+		}
+		
+		//TODO: Call update
+	}
+	
+	public DrawingObject getSelected(){
+		if(m_hasSelected){
+			return m_objects.get(m_selectedObjectIndex);
+		} else {
+			return null;
 		}
 	}
 	
