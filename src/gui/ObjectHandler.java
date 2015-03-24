@@ -94,11 +94,17 @@ public class ObjectHandler {
 		}
 	}
 	
+	/**
+	 * Calls copy, removes the selected object, and updates the screen
+	 * @throws Exception Thrown if no object is selected
+	 */
 	public void cut() throws Exception{
 		if(m_hasSelected){
 			copy();
 			m_objects.remove(m_selectedObjectIndex);
 			updateAll();
+		} else {
+			throw new Exception("No selected object");
 		}
 	}
 	

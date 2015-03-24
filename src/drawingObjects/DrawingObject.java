@@ -46,7 +46,7 @@ public class DrawingObject {
 	 * Draw puts the current object onto the screen based on the color
 	 */
 	public void draw(JFrame frame){
-		
+		//TODO: Make the draw method
 	}
 	
 	//Set Methods
