@@ -11,39 +11,32 @@ import javax.swing.JMenu;
 
 public class GUIHandler extends JFrame {
 
+	private ObjectHandler m_objHandler;
+	
 	private JPanel contentPane;
+	//Menu Bar
+	private JMenuBar menuBar;
+	private JMenu mnFile;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIHandler frame = new GUIHandler();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	public GUIHandler(ObjectHandler objHandler) {
+		//Initializing Components
+		m_objHandler = objHandler;
+		
+		//Initializing GUI Objects
+		menuBar = new JMenuBar();
+		mnFile = new JMenu("File");
 
-	/**
-	 * Create the frame.
-	 */
-	public GUIHandler() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnFile = new JMenu("File");
-		menuBar.add(mnFile);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		//Setting general options
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Setting menu bar
+		setJMenuBar(menuBar);
+		menuBar.add(mnFile);
+		
+		//Setting content pane
+		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
 	}
 
