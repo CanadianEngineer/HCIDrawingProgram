@@ -14,13 +14,14 @@ public class GUIHandler extends JFrame {
 	private ObjectHandler m_objHandler;
 	
 	private JPanel contentPane;
+	private JFrame m_drawingFrame;
 	//Menu Bar
 	private JMenuBar menuBar;
 	private JMenu mnFile;
 
-	public GUIHandler(ObjectHandler objHandler) {
+	public GUIHandler() {
 		//Initializing Components
-		m_objHandler = objHandler;
+		m_objHandler = new ObjectHandler(m_drawingFrame);
 		
 		//Initializing GUI Objects
 		menuBar = new JMenuBar();
@@ -38,6 +39,8 @@ public class GUIHandler extends JFrame {
 		//Setting content pane
 		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
+		
+		this.setVisible(true);
 	}
 
 }
