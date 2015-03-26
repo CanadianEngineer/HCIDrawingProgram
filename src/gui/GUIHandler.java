@@ -96,8 +96,10 @@ public class GUIHandler extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("hi");
 		
+		mode = e.getActionCommand().toUpperCase();
+		
+		System.out.println(mode);
 	}
 
 }
