@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
+import develCode.Global;
+
 public class GUIHandler extends JFrame implements ActionListener {
 
 	private ObjectHandler m_objHandler;
@@ -99,7 +101,7 @@ public class GUIHandler extends JFrame implements ActionListener {
 		
 		mode = e.getActionCommand().toUpperCase();
 		
-		System.out.println(mode);
+		Global.update(mode);
 	}
 
 }

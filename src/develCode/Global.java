@@ -6,14 +6,14 @@ package develCode;
  *
  */
 public class Global {
-	boolean g_devMode = true;
+	static boolean g_devMode = true;
 	
 	/**
 	 * Displays code to console with link back to where code was called
 	 * @author Andrew Lampert
 	 * @param s display message
 	 */
-	public void update(String s){
+	public static void update(String s){
 		if(g_devMode){
 			
 			//Getting trace element that was before entering global.update
