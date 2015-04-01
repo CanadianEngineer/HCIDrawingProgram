@@ -1,10 +1,11 @@
 package drawingObjects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class LineObject extends DrawingObject {
 
-	public LineObject(int x_start, int y_start, String color) {
+	public LineObject(int x_start, int y_start, Color color) {
 		super(x_start, y_start, color);
 		
 	}

@@ -1,13 +1,13 @@
 package drawingObjects;
 
 import java.awt.Graphics;
-
+import java.awt.Color;
 import javax.swing.JFrame;
 
 public class EllipseObject extends DrawingObject{
 
 	public EllipseObject(int x_start, int y_start, int x_end, int y_end,
-			String color) {
+			Color color) {
 		super(x_start, y_start, color);
 	}
 	

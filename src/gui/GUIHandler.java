@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
 import drawingObjects.*;
-
 import develCode.Global;
 
 public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
@@ -127,6 +127,8 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		
 		Global.update(m_mode);
 	}
+	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -151,11 +153,11 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		// TODO Auto-generated method stub
 		if(m_currentObject == null) {
 			if(m_mode == "LINE") {
-				m_currentObject = new LineObject(e.getX(), e.getY(), "FUCK");
+				m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode == "RECTANGLE") {
-				m_currentObject = new RectangleObject(e.getX(), e.getY(), "FUCK");
+				m_currentObject = new RectangleObject(e.getX(), e.getY(), Color.black);
 			}
 			else if(m_mode == "SQUARE") {
 				
@@ -169,6 +171,8 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 			else if(m_mode == "SCRIBBBLE") {
 				
 			}
+			m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
+			m_objHandler.add(m_currentObject);
 		}
 		else {
 			m_currentObject.stopAdjusting();
@@ -190,7 +194,6 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("testing");
 		m_currentX = arg0.getX();
 		m_currentY = arg0.getY();
 		contentPane.repaint();

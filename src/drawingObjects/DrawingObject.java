@@ -1,5 +1,6 @@
 package drawingObjects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -7,11 +8,11 @@ import javax.swing.JFrame;
 public class DrawingObject {
 	//VARIABLES
 	protected int m_x_start, m_y_start, m_x_end, m_y_end;
-	private String m_color;
+	private Color m_color;
 	private boolean m_isAdjusting;
 	
 	//METHODS
-	public DrawingObject(int x_start, int y_start, String color){
+	public DrawingObject(int x_start, int y_start, Color color){
 		m_x_start = x_start;
 		m_y_start = y_start;
 		m_x_end = x_start;
@@ -52,7 +53,7 @@ public class DrawingObject {
 	}
 	
 	//Set Methods
-	public void setColor(String color){
+	public void setColor(Color color){
 		m_color = color;
 	}
 	
