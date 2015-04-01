@@ -45,8 +45,6 @@ public class FreeHandObject extends DrawingObject{
 		for(Point p : points){
 			p.x += x_shift;
 			p.y += y_shift;
-			
-			System.out.println(m_x_start + " " + m_y_start + " " + m_x_end + " " + m_y_end);
 		}
 
 		m_x_start += x_shift;
