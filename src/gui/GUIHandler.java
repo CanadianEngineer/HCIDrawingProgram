@@ -34,7 +34,7 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	private JMenu mnFile, mnDrawOptions;
 	private JMenuItem mnMenuItem;
 	private ButtonGroup mnShapeSelect;
-	private JRadioButtonMenuItem mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
+	private JRadioButtonMenuItem mnSelectButton, mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
 	private int m_currentX, m_currentY;
 	
 	private DrawingObject m_currentObject;
@@ -48,6 +48,10 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		menuBar = new JMenuBar();
 		mnFile = new JMenu("File");
 		mnDrawOptions = new JMenu("Draw Mode");
+		
+		mnSelectButton = new JRadioButtonMenuItem("Select", false);
+		mnDrawOptions.add(mnSelectButton);
+		mnShapeSelect.add(mnSelectButton);
 		
 		mnScribbleButton = new JRadioButtonMenuItem("Scribble", false);
 		mnDrawOptions.add(mnScribbleButton);
@@ -77,6 +81,7 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		mnDrawOptions.add(mnPolygonButton);
 		mnShapeSelect.add(mnPolygonButton);
 		
+		mnSelectButton.addActionListener(this);
 		mnScribbleButton.addActionListener(this);
 		mnLineButton.addActionListener(this);
 		mnRectangleButton.addActionListener(this);
