@@ -15,16 +15,22 @@ public class FreeHandObject extends DrawingObject{
 	
 	public void addPoint(Point p){
 		points.add(p);
+	}
+	
+	public void stopAdjusting(){
+		m_isAdjusting = false;
 		
-		//setting left region
-		if(p.x < m_x_start) m_x_start = (int) p.x;
-		//setting right region
-		if(p.x > m_x_end) m_x_end = (int)p.x;
-		
-		//setting top region
-		if(p.y < m_y_start) m_y_start = (int) p.y;
-		//Setting bottom region
-		if(p.y > m_y_end) m_y_end = (int) p.y;
+		for(Point p : points){
+			//setting left region
+			if(p.x < m_x_start) m_x_start = (int) p.x;
+			//setting right region
+			if(p.x > m_x_end) m_x_end = (int)p.x;
+			
+			//setting top region
+			if(p.y < m_y_start) m_y_start = (int) p.y;
+			//Setting bottom region
+			if(p.y > m_y_end) m_y_end = (int) p.y;
+		}
 	}
 	
 	public void draw(Graphics g) {
