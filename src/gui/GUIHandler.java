@@ -131,6 +131,8 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		
 		m_mode = e.getActionCommand().toUpperCase();
 		
+		m_currentObject = null;
+		
 		Global.update(m_mode);
 	}
 	
@@ -184,7 +186,9 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("POLYGON")) {
-				
+				m_currentObject = new PolygonObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
+				((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
 			}
 			else if(m_mode.equals("SCRIBBLE")) {
 				m_currentObject = new FreeHandObject(e.getX(), e.getY(), Color.black);
@@ -194,9 +198,14 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 
 		}
 		else {
-			System.out.println("YES NULL");
-			m_currentObject.stopAdjusting();
-			m_currentObject = null;
+			if(m_mode.equals("POLYGON")){
+				((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
+				contentPane.repaint();
+			}
+			else {
+				m_currentObject.stopAdjusting();
+				m_currentObject = null;
+			}
 		}
 		
 		contentPane.repaint();
@@ -204,7 +213,6 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		if(m_mode.equals("SCRIBBLE")){
 			m_currentObject = null;
 		}
