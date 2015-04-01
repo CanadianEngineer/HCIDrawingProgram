@@ -214,6 +214,7 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		if(m_mode.equals("SCRIBBLE")){
+			m_currentObject.stopAdjusting();
 			m_currentObject = null;
 		}
 	}
