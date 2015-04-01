@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -43,6 +44,9 @@ public class ObjectHandler {
 		
 		for(int i = 0; i < this.size(); i++){
 			m_objects.get(i).update(g, x, y);
+			if (m_objects.get(i).getAdjusting()) {
+				m_objects.get(i).updateEndpoint(x, y);
+			}
 		}
 	}
 	public void updateAll(Graphics g){
