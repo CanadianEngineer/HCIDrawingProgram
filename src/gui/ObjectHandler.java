@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -17,14 +18,14 @@ public class ObjectHandler {
 	private DrawingObject m_copyObject;
 	private int m_selectedObjectIndex;
 	private boolean m_hasSelected;
-	private JFrame m_frame;
+	//private JFrame m_frame;
+	private Graphics m_graphics;
 	
-	public ObjectHandler(JFrame frame){
+	public ObjectHandler(){
 		m_objects = new ArrayList<DrawingObject>();
 		m_objectHistory = new ArrayList<DrawingObject>();
 		m_selectedObjectIndex = 0;
 		m_hasSelected = false;
-		m_frame = frame;
 	}
 	
 	//METHODS
@@ -36,20 +37,19 @@ public class ObjectHandler {
 		return m_objects.size();
 	}
 	
-	public void updateAll(int x, int y){
+	public void updateAll(Graphics g, int x, int y){
 		//takes in x and y coordinates because update function takes x and y coordinates to update an object that is being adjusted
 		//CLEAR SCREEN
 		
 		for(int i = 0; i < this.size(); i++){
-			m_objects.get(i).update(m_frame, x, y);
+			m_objects.get(i).update(g, x, y);
 		}
 	}
-	public void updateAll(){
+	public void updateAll(Graphics g){
 		//CLEAR SCREEN
 		
-		
 		for(int i = 0; i < this.size(); i++){
-			m_objects.get(i).update(m_frame);
+			m_objects.get(i).update(g);
 		}
 	}
 	
@@ -83,7 +83,7 @@ public class ObjectHandler {
 		}
 		
 		//Call update
-		this.updateAll();
+		//this.updateAll();
 	}
 	
 	public void copy() throws Exception{
@@ -102,7 +102,7 @@ public class ObjectHandler {
 		if(m_hasSelected){
 			copy();
 			m_objects.remove(m_selectedObjectIndex);
-			updateAll();
+			//updateAll();
 		} else {
 			throw new Exception("No selected object");
 		}

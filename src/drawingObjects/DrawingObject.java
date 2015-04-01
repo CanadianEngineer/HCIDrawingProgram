@@ -1,5 +1,7 @@
 package drawingObjects;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 public class DrawingObject {
@@ -23,16 +25,16 @@ public class DrawingObject {
 	 * @param x x coordinate of mouse
 	 * @param y y coordinate of mouse
 	 */
-	public void update(JFrame frame, int x, int y){
+	public void update(Graphics g, int x, int y){
 		if(m_isAdjusting){
 			m_x_end = x;
 			m_y_end = y;
 		}
-		draw(frame);
+		draw(g);
 	}
 	
-	public void update (JFrame frame){
-		draw(frame);
+	public void update (Graphics g){
+		draw(g);
 	}
 	
 	public void shift(int x_shift, int y_shift){
@@ -45,7 +47,7 @@ public class DrawingObject {
 	/**
 	 * Draw puts the current object onto the screen based on the color
 	 */
-	public void draw(JFrame frame){
+	public void draw(Graphics g){
 		//TODO: Make the draw method
 	}
 	

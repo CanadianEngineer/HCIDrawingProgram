@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,7 +33,7 @@ public class GUIHandler extends JFrame implements ActionListener {
 
 	public GUIHandler() {
 		//Initializing Components
-		m_objHandler = new ObjectHandler(m_drawingFrame);
+		m_objHandler = new ObjectHandler();
 		mnShapeSelect = new ButtonGroup();
 		
 		//Initializing GUI Objects
@@ -77,7 +78,17 @@ public class GUIHandler extends JFrame implements ActionListener {
 		mnPolygonButton.addActionListener(this);
 		
 		
-		contentPane = new JPanel();
+		contentPane = new JPanel(){
+			
+			/*
+			 *	repaint() calls paintComponent with the appropriate graphics.
+			 *	:. call repaint() in mouse handlers which will call paintComponent which will call updateAll :D we did it 
+			 */
+			
+			public void paintComponent(Graphics g){
+				m_objHandler.updateAll(g);
+			}
+		};
 		
 		//Setting general options
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

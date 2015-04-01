@@ -9,9 +9,5 @@ public class EllipseObject extends DrawingObject{
 		super(x_start, y_start, color);
 	}
 	
-	public void draw(JFrame frame) {
-		
-	}
-	
 	//Need to add a 3rd point
 }
