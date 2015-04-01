@@ -199,8 +199,14 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		}
 		else {
 			if(m_mode.equals("POLYGON")){
-				((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
-				contentPane.repaint();
+				if(e.getButton() == e.BUTTON1){
+					((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
+					contentPane.repaint();
+				}
+				else if(e.getButton() == e.BUTTON3){
+					m_currentObject.stopAdjusting();
+					m_currentObject = null;
+				}
 			}
 			else {
 				m_currentObject.stopAdjusting();
