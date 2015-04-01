@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
@@ -15,9 +18,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
+import drawingObjects.*;
+
 import develCode.Global;
 
-public class GUIHandler extends JFrame implements ActionListener {
+public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
 	private ObjectHandler m_objHandler;
 	private String mode;
@@ -30,7 +35,10 @@ public class GUIHandler extends JFrame implements ActionListener {
 	private JMenuItem mnMenuItem;
 	private ButtonGroup mnShapeSelect;
 	private JRadioButtonMenuItem mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
-
+	private int m_currentX, m_currentY;
+	
+	private DrawingObject m_currentObject;
+	
 	public GUIHandler() {
 		//Initializing Components
 		m_objHandler = new ObjectHandler();
@@ -86,9 +94,14 @@ public class GUIHandler extends JFrame implements ActionListener {
 			 */
 			
 			public void paintComponent(Graphics g){
-				m_objHandler.updateAll(g);
+				super.paintComponent(g);
+				
+				m_objHandler.updateAll(g, m_currentX, m_currentY);
 			}
 		};
+		
+		contentPane.addMouseListener(this);
+		contentPane.addMouseMotionListener(this);
 		
 		//Setting general options
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -116,5 +129,56 @@ public class GUIHandler extends JFrame implements ActionListener {
 	}
 	
 	
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(m_currentObject == null) {
+			m_currentObject = new LineObject(e.getX(), e.getY(), "FUCK");
+			m_objHandler.add(m_currentObject);
+		}
+		else {
+			m_currentObject.stopAdjusting();
+			m_currentObject = null;
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("testing");
+		m_currentX = arg0.getX();
+		m_currentY = arg0.getY();
+		contentPane.repaint();
+	}
 
 }

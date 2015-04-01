@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 public class DrawingObject {
 	//VARIABLES
-	private int m_x_start, m_y_start, m_x_end, m_y_end;
+	protected int m_x_start, m_y_start, m_x_end, m_y_end;
 	private String m_color;
 	private boolean m_isAdjusting;
 	
@@ -60,6 +60,10 @@ public class DrawingObject {
 		m_isAdjusting = false;
 	}
 	
+	public boolean getAdjusting() {
+		return this.m_isAdjusting;
+	}
+	
 	/**
 	 * returns boolean value of whether or not coordinates are within the area of the object.
 	 * @param x
@@ -93,5 +97,10 @@ public class DrawingObject {
 		} else {
 			return false;
 		}
+	}
+	
+	public void updateEndpoint(int x, int y) {
+		this.m_x_end = x;
+		this.m_y_end = y;
 	}
 }
