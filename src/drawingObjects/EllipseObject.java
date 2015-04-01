@@ -1,5 +1,7 @@
 package drawingObjects;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 public class EllipseObject extends DrawingObject{
@@ -9,5 +11,7 @@ public class EllipseObject extends DrawingObject{
 		super(x_start, y_start, color);
 	}
 	
-	//Need to add a 3rd point
+	public void draw(Graphics g) {
+		g.drawLine(m_x_start, m_y_start, m_x_end, m_y_end);
+	}
 }

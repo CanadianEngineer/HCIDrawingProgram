@@ -25,7 +25,7 @@ import develCode.Global;
 public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
 	private ObjectHandler m_objHandler;
-	private String mode;
+	private String m_mode;
 	
 	private JPanel contentPane;
 	private JFrame m_drawingFrame;
@@ -123,9 +123,9 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		mode = e.getActionCommand().toUpperCase();
+		m_mode = e.getActionCommand().toUpperCase();
 		
-		Global.update(mode);
+		Global.update(m_mode);
 	}
 
 	@Override
@@ -150,8 +150,25 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(m_currentObject == null) {
-			m_currentObject = new LineObject(e.getX(), e.getY(), "FUCK");
-			m_objHandler.add(m_currentObject);
+			if(m_mode == "LINE") {
+				m_currentObject = new LineObject(e.getX(), e.getY(), "FUCK");
+				m_objHandler.add(m_currentObject);
+			}
+			else if(m_mode == "RECTANGLE") {
+				m_currentObject = new RectangleObject(e.getX(), e.getY(), "FUCK");
+			}
+			else if(m_mode == "SQUARE") {
+				
+			}
+			else if(m_mode == "ELLIPSE") {
+				
+			}
+			else if(m_mode == "CIRCLE") {
+				
+			}
+			else if(m_mode == "SCRIBBBLE") {
+				
+			}
 		}
 		else {
 			m_currentObject.stopAdjusting();
