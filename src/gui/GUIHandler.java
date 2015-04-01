@@ -197,14 +197,21 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-
+	public void mouseDragged(MouseEvent e) {
+		try {
+			if(m_objHandler.getSelected() != null){
+				int x_disp = e.getX() - m_currentX;
+				int y_disp = e.getY() - m_currentY;
+				m_objHandler.drag(e.getX(), e.getY(), x_disp, y_disp);
+			}
+		} catch (Exception e1) {
+			Global.update(e1.getMessage());
+		}
+		mouseMoved(e);
 	}
 
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 		m_currentX = arg0.getX();
 		m_currentY = arg0.getY();
 		contentPane.repaint();

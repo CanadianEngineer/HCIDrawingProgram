@@ -19,8 +19,6 @@ public class ObjectHandler {
 	private DrawingObject m_copyObject;
 	private int m_selectedObjectIndex;
 	private boolean m_hasSelected;
-	//private JFrame m_frame;
-	private Graphics m_graphics;
 	
 	public ObjectHandler(){
 		m_objects = new ArrayList<DrawingObject>();
@@ -76,7 +74,7 @@ public class ObjectHandler {
 		m_objects.get(index).select();
 	}
 	
-	public void drag(Graphics g, int mouse_x, int mouse_y, int x_disp, int y_disp){
+	public void drag(int mouse_x, int mouse_y, int x_disp, int y_disp){
 		//Make sure mouse is within selected objects region
 		try {
 			if(getSelected().inRegion(mouse_x, mouse_y)){
@@ -86,9 +84,6 @@ public class ObjectHandler {
 		} catch (Exception e) {
 			//If no selected object, do NOTHING
 		}
-		
-		//Call update
-		this.updateAll(g);
 	}
 	
 	public void copy() throws Exception{
