@@ -116,17 +116,18 @@ public class ObjectHandler {
 		if(m_hasSelected){
 			copy();
 			m_objects.remove(m_selectedObjectIndex);
-			//updateAll();
 		} else {
 			throw new Exception("No selected object");
 		}
 	}
 	
-	public void paste(){
+	public void paste(int mouse_x, int mouse_y){
 		if(m_copyObject != null){
-			//TODO: AGAIN, is it size()? Or size-1?
+			
+			m_copyObject.setCenter(mouse_x, mouse_y);
+			
 			m_objects.add(m_copyObject);
-			//this.select(m_objects.size());
+			
 		}
 	}
 	

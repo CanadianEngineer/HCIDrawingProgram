@@ -120,4 +120,20 @@ public class DrawingObject {
 	public void deselect(){
 		m_color = m_originalColor;
 	}
+
+	public void setCenter(int mouse_x, int mouse_y) {
+		int shift_x, shift_y;
+		int current_x, current_y;
+		
+		//Find current x and y coordinates
+		current_x = (m_x_start + m_x_end)/2;
+		current_y = (m_y_start + m_y_end) / 2;
+		
+		//calculating shift
+		shift_x = mouse_x - current_x;
+		shift_y = mouse_y - current_y;
+		
+		//Shifting object
+		shift(shift_x, shift_y);
+	}
 }
