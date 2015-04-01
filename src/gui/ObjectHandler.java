@@ -127,7 +127,6 @@ public class ObjectHandler {
 			m_copyObject.setCenter(mouse_x, mouse_y);
 			
 			m_objects.add(m_copyObject);
-			
 		}
 	}
 	
