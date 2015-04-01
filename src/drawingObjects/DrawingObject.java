@@ -65,8 +65,8 @@ public class DrawingObject {
 	
 	/**
 	 * returns boolean value of whether or not coordinates are within the area of the object.
-	 * @param x
-	 * @param y
+	 * @param x x coordinate of mouse
+	 * @param y y coordinate of mouse
 	 */
 	public boolean inRegion(int x, int y){
 		//TODO: Contour region for ellipses and circles
