@@ -34,8 +34,8 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	private JMenuBar menuBar;
 	private JMenu mnFile, mnDrawOptions;
 	private JMenuItem mnMenuItem;
-	private ButtonGroup mnShapeSelect;
-	private JRadioButtonMenuItem mnSelectButton, mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
+	private ButtonGroup mnShapeSelect, mnFileButtons;
+	private JRadioButtonMenuItem mnCutButton, mnPasteButton, mnSelectButton, mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
 	private int m_currentX, m_currentY;
 	
 	private DrawingObject m_currentObject;
@@ -44,11 +44,20 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		//Initializing Components
 		m_objHandler = new ObjectHandler();
 		mnShapeSelect = new ButtonGroup();
+		mnFileButtons = new ButtonGroup();
 		
 		//Initializing GUI Objects
 		menuBar = new JMenuBar();
 		mnFile = new JMenu("File");
 		mnDrawOptions = new JMenu("Draw Mode");
+		
+		mnCutButton = new JRadioButtonMenuItem("Cut", false);
+		mnFile.add(mnCutButton);
+		mnFileButtons.add(mnCutButton);
+		
+		mnPasteButton = new JRadioButtonMenuItem("Paste", false);
+		mnFile.add(mnPasteButton);
+		mnFileButtons.add(mnPasteButton);
 		
 		mnSelectButton = new JRadioButtonMenuItem("Select", false);
 		mnDrawOptions.add(mnSelectButton);
@@ -91,6 +100,9 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		mnCircleButton.addActionListener(this);
 		mnPolygonButton.addActionListener(this);
 		
+		mnCutButton.addActionListener(this);
+		mnPasteButton.addActionListener(this);
+		
 		
 		contentPane = new JPanel(){
 			
@@ -130,6 +142,15 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	public void actionPerformed(ActionEvent e) {
 		
 		m_mode = e.getActionCommand().toUpperCase();
+		
+		if(m_mode.equals("CUT")){
+			try {
+				m_objHandler.cut();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				System.out.println(e1);
+			}
+		}
 		
 		m_currentObject = null;
 		
