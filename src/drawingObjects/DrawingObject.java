@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 public class DrawingObject {
 	//VARIABLES
 	protected int m_x_start, m_y_start, m_x_end, m_y_end;
-	protected Color m_color;
+	protected Color m_color, m_originalColor;
 	protected boolean m_isAdjusting;
 	
 	//METHODS
@@ -18,6 +18,7 @@ public class DrawingObject {
 		m_x_end = x_start;
 		m_y_end = y_start;
 		m_color = color;
+		m_originalColor = color;
 		m_isAdjusting = true;
 	}
 	
@@ -115,5 +116,8 @@ public class DrawingObject {
 	 */
 	public void select(){
 		m_color = Color.BLUE;
+	}
+	public void deselect(){
+		m_color = m_originalColor;
 	}
 }

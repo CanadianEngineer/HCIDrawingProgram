@@ -57,13 +57,23 @@ public class ObjectHandler {
 	
 	//Cut Copy and Paste
 	public void select(int x, int y){
+		boolean foundSelected = false;
 		
 		//Reversed to select top-most object
+		loop:
 		for (int i = this.size()-1; i >= 0; i--){
 			if(m_objects.get(i).inRegion(x,  y)){
 				select(i);
-				break;
+				foundSelected = true;
+				break loop;
 			}
+		}
+	
+		//If no object is selected, deselect all objects
+		if(!foundSelected) m_hasSelected = false;
+		for(int i = 0; i < this.size(); i++){
+			//If object is not being selected, deselect it
+			if(!foundSelected || foundSelected && m_selectedObjectIndex != i) deselect(i);
 		}
 	}
 	public void select(int index){
@@ -72,6 +82,10 @@ public class ObjectHandler {
 		
 		//TODO: Modify selected object. Add little squares around object?
 		m_objects.get(index).select();
+	}
+	
+	public void deselect(int index){
+		m_objects.get(index).deselect();
 	}
 	
 	public void drag(int mouse_x, int mouse_y, int x_disp, int y_disp){
