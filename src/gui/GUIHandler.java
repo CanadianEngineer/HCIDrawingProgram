@@ -185,6 +185,12 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 			m_objHandler.select(e.getX(), e.getY());
 		}
 		
+		if(m_mode.equals("PASTE")){
+			m_objHandler.paste(e.getX(), e.getY());
+			contentPane.repaint();
+			m_mode = "SELECT";
+		}
+		
 		if(m_currentObject == null) {
 			if(m_mode.equals("LINE")) {
 				m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
