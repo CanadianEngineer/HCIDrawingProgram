@@ -25,7 +25,7 @@ import develCode.Global;
 public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
 	private ObjectHandler m_objHandler;
-	private String m_mode;
+	private String m_mode = "LINE";
 	
 	private JPanel contentPane;
 	private JFrame m_drawingFrame;
@@ -151,30 +151,36 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+		if(m_mode.equals("SELECT")){
+			m_objHandler.select(e.getX(), e.getY());
+		}
+		
 		if(m_currentObject == null) {
-			if(m_mode == "LINE") {
+			if(m_mode.equals("LINE")) {
 				m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
 				m_objHandler.add(m_currentObject);
 			}
-			else if(m_mode == "RECTANGLE") {
+			else if(m_mode.equals("RECTANGLE")) {
+				System.out.println("MAKIN ANOTHER RECTANGLE HERE BOSS");
 				m_currentObject = new RectangleObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
 			}
-			else if(m_mode == "SQUARE") {
+			else if(m_mode.equals("SQUARE")) {
 				
 			}
-			else if(m_mode == "ELLIPSE") {
+			else if(m_mode.equals("ELLIPSE")) {
 				
 			}
-			else if(m_mode == "CIRCLE") {
+			else if(m_mode.equals("CIRCLE")) {
 				
 			}
-			else if(m_mode == "SCRIBBBLE") {
+			else if(m_mode.equals("SCRIBBBLE")) {
 				
 			}
-			m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
-			m_objHandler.add(m_currentObject);
 		}
 		else {
+			System.out.println("YES NULL");
 			m_currentObject.stopAdjusting();
 			m_currentObject = null;
 		}

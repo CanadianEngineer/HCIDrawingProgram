@@ -12,6 +12,7 @@ public class EllipseObject extends DrawingObject{
 	}
 	
 	public void draw(Graphics g) {
+		g.setColor(m_color);
 		g.drawLine(m_x_start, m_y_start, m_x_end, m_y_end);
 	}
 }
