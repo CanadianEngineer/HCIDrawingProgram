@@ -11,11 +11,20 @@ public class FreeHandObject extends DrawingObject{
 
 	public FreeHandObject(int x_start, int y_start, Color color) {
 		super(x_start, y_start, color);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void addPoint(Point p){
 		points.add(p);
+		
+		//setting left region
+		if(p.x < m_x_start) m_x_start = (int) p.x;
+		//setting right region
+		if(p.x > m_x_end) m_x_end = (int)p.x;
+		
+		//setting top region
+		if(p.y < m_y_start) m_y_start = (int) p.y;
+		//Setting bottom region
+		if(p.y > m_y_end) m_y_end = (int) p.y;
 	}
 	
 	public void draw(Graphics g) {
@@ -23,6 +32,13 @@ public class FreeHandObject extends DrawingObject{
 		
 		for(int i = 0; i < points.size() - 2; i++){
 			g.drawLine(points.get(i).x, points.get(i).y, points.get(i+1).x, points.get(i+1).y);
+		}
+	}
+	
+	public void shift(int x_shift, int y_shift){
+		for(Point p : points){
+			p.x += x_shift;
+			p.y += y_shift;
 		}
 	}
 
