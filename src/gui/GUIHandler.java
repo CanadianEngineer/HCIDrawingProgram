@@ -167,28 +167,34 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("RECTANGLE")) {
-				System.out.println("MAKIN ANOTHER RECTANGLE HERE BOSS");
 				m_currentObject = new RectangleObject(e.getX(), e.getY(), Color.black);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("SQUARE")) {
-				
+				m_currentObject = new SquareObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("ELLIPSE")) {
-				
+				m_currentObject = new EllipseObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("CIRCLE")) {
+				m_currentObject = new CircleObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
+			}
+			else if(m_mode.equals("POLYGON")) {
 				
 			}
-			else if(m_mode.equals("SCRIBBBLE")) {
-				
-			}
+			
+
 		}
 		else {
 			System.out.println("YES NULL");
 			m_currentObject.stopAdjusting();
 			m_currentObject = null;
 		}
+		
+		contentPane.repaint();
 	}
 
 	@Override
