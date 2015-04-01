@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 public class DrawingObject {
 	//VARIABLES
 	protected int m_x_start, m_y_start, m_x_end, m_y_end;
-	private Color m_color;
-	private boolean m_isAdjusting;
+	protected Color m_color;
+	protected boolean m_isAdjusting;
 	
 	//METHODS
 	public DrawingObject(int x_start, int y_start, Color color){
@@ -53,8 +53,9 @@ public class DrawingObject {
 	}
 	
 	//Set Methods
-	public void setColor(Color color){
+	public void setColor(Graphics g, Color color){
 		m_color = color;
+		g.setColor(m_color);
 	}
 	
 	public void stopAdjusting(){
