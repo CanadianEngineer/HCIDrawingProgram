@@ -11,7 +11,7 @@ public class SquareObject extends RectangleObject{
 	
 	public void draw(Graphics g) {
 		g.setColor(m_color);
-		g.drawLine(m_x_start, m_y_start, m_x_end, m_y_end);
+		g.drawRect(Math.min(m_x_start, m_x_end), Math.min(m_y_start, m_y_end), Math.max(Math.abs(m_x_end - m_x_start), Math.abs(m_y_end - m_y_start)), Math.max(Math.abs(m_x_end - m_x_start), Math.abs(m_y_end - m_y_start)));
 	}
 
 }
