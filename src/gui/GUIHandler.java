@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
 import drawingObjects.*;
-
 import develCode.Global;
 
 public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
@@ -152,7 +152,7 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if(m_currentObject == null) {
-			m_currentObject = new LineObject(e.getX(), e.getY(), "FUCK");
+			m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
 			m_objHandler.add(m_currentObject);
 		}
 		else {
@@ -175,7 +175,6 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void mouseMoved(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println("testing");
 		m_currentX = arg0.getX();
 		m_currentY = arg0.getY();
 		contentPane.repaint();
