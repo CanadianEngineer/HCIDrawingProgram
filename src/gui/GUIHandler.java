@@ -114,5 +114,7 @@ public class GUIHandler extends JFrame implements ActionListener {
 		
 		Global.update(mode);
 	}
+	
+	
 
 }
