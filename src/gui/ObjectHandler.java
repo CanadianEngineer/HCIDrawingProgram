@@ -73,9 +73,10 @@ public class ObjectHandler {
 		m_hasSelected = true;
 		
 		//TODO: Modify selected object. Add little squares around object?
+		m_objects.get(index).select();
 	}
 	
-	public void drag(int mouse_x, int mouse_y, int x_disp, int y_disp){
+	public void drag(Graphics g, int mouse_x, int mouse_y, int x_disp, int y_disp){
 		//Make sure mouse is within selected objects region
 		try {
 			if(getSelected().inRegion(mouse_x, mouse_y)){
@@ -87,7 +88,7 @@ public class ObjectHandler {
 		}
 		
 		//Call update
-		//this.updateAll();
+		this.updateAll(g);
 	}
 	
 	public void copy() throws Exception{
@@ -116,7 +117,7 @@ public class ObjectHandler {
 		if(m_copyObject != null){
 			//TODO: AGAIN, is it size()? Or size-1?
 			m_objects.add(m_copyObject);
-			this.select(m_objects.size());
+			//this.select(m_objects.size());
 		}
 	}
 	

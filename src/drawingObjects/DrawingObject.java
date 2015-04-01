@@ -53,10 +53,7 @@ public class DrawingObject {
 	}
 	
 	//Set Methods
-	public void setColor(Color color){
-		m_color = color;
-	}
-	
+
 	public void stopAdjusting(){
 		m_isAdjusting = false;
 	}
@@ -103,5 +100,20 @@ public class DrawingObject {
 	public void updateEndpoint(int x, int y) {
 		this.m_x_end = x;
 		this.m_y_end = y;
+	}
+	
+	public int getx(){
+		return m_x_start;
+	}
+	public int gety(){
+		return m_y_start;
+	}
+	
+	/**
+	 * Method that is called whenever the object is selected
+	 * @param g
+	 */
+	public void select(){
+		m_color = Color.BLUE;
 	}
 }
