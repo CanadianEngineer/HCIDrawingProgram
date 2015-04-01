@@ -205,6 +205,9 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(m_mode.equals("SCRIBBLE")){
+			m_currentObject = null;
+		}
 	}
 
 	@Override
