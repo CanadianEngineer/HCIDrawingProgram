@@ -37,10 +37,12 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	private ButtonGroup mnShapeSelect, mnFileButtons;
 	private JRadioButtonMenuItem mnCutButton, mnPasteButton, mnSelectButton, mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
 	private int m_currentX, m_currentY;
+	private Color m_selectedColor;
 	
 	private DrawingObject m_currentObject;
 	
 	public GUIHandler() {
+		m_selectedColor = Color.BLACK;
 		//Initializing Components
 		m_objHandler = new ObjectHandler();
 		mnShapeSelect = new ButtonGroup();
@@ -193,32 +195,32 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		
 		if(m_currentObject == null) {
 			if(m_mode.equals("LINE")) {
-				m_currentObject = new LineObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new LineObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("RECTANGLE")) {
-				m_currentObject = new RectangleObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new RectangleObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("SQUARE")) {
-				m_currentObject = new SquareObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new SquareObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("ELLIPSE")) {
-				m_currentObject = new EllipseObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new EllipseObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("CIRCLE")) {
-				m_currentObject = new CircleObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new CircleObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("POLYGON")) {
-				m_currentObject = new PolygonObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new PolygonObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 				((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
 			}
 			else if(m_mode.equals("SCRIBBLE")) {
-				m_currentObject = new FreeHandObject(e.getX(), e.getY(), Color.black);
+				m_currentObject = new FreeHandObject(e.getX(), e.getY(), m_selectedColor);
 				m_objHandler.add(m_currentObject);
 			}
 			
