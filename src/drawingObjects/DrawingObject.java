@@ -104,4 +104,11 @@ public class DrawingObject {
 		this.m_x_end = x;
 		this.m_y_end = y;
 	}
+	
+	public int getx(){
+		return m_x_start;
+	}
+	public int gety(){
+		return m_y_start;
+	}
 }
