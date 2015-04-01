@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -185,6 +186,10 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 			else if(m_mode.equals("POLYGON")) {
 				
 			}
+			else if(m_mode.equals("SCRIBBLE")) {
+				m_currentObject = new FreeHandObject(e.getX(), e.getY(), Color.black);
+				m_objHandler.add(m_currentObject);
+			}
 			
 
 		}
@@ -215,6 +220,10 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 			} catch (Exception e1) {
 				Global.update(e1.getMessage());
 			}
+		}
+		else if (m_mode.equals("SCRIBBLE")){
+			((FreeHandObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
+			contentPane.repaint();
 		}
 	}
 
