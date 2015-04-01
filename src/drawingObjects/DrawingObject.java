@@ -53,11 +53,7 @@ public class DrawingObject {
 	}
 	
 	//Set Methods
-	public void setColor(Graphics g, Color color){
-		m_color = color;
-		g.setColor(m_color);
-	}
-	
+
 	public void stopAdjusting(){
 		m_isAdjusting = false;
 	}
@@ -111,5 +107,13 @@ public class DrawingObject {
 	}
 	public int gety(){
 		return m_y_start;
+	}
+	
+	/**
+	 * Method that is called whenever the object is selected
+	 * @param g
+	 */
+	public void select(){
+		m_color = Color.BLUE;
 	}
 }
