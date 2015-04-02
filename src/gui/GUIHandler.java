@@ -22,6 +22,9 @@ import javax.swing.JMenu;
 
 import drawingObjects.*;
 import develCode.Global;
+import java.awt.Dimension;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 public class GUIHandler extends JFrame implements ActionListener, MouseListener, MouseMotionListener {
 
@@ -32,12 +35,14 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 	private JFrame m_drawingFrame;
 	//Menu Bar
 	private JMenuBar menuBar;
+        private JColorChooser chooser;
 	private JMenu mnFile, mnDrawOptions;
 	private JMenuItem mnMenuItem;
 	private ButtonGroup mnShapeSelect, mnFileButtons;
 	private JRadioButtonMenuItem mnCutButton, mnPasteButton, mnSelectButton, mnScribbleButton, mnLineButton, mnRectangleButton, mnSquareButton, mnEllipseButton, mnCircleButton, mnPolygonButton;
 	private int m_currentX, m_currentY;
 	private Color m_selectedColor;
+        private JOptionPane optionPane;
 	
 	private DrawingObject m_currentObject;
 	
@@ -92,6 +97,11 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		mnPolygonButton = new JRadioButtonMenuItem("Polygon", false);
 		mnDrawOptions.add(mnPolygonButton);
 		mnShapeSelect.add(mnPolygonButton);
+                
+                Dimension dim = new Dimension(200,800);
+                chooser = new JColorChooser(m_selectedColor);
+                chooser.setMaximumSize(dim);
+                m_selectedColor = chooser.getColor();
 		
 		mnSelectButton.addActionListener(this);
 		mnScribbleButton.addActionListener(this);
@@ -134,6 +144,7 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		//Setting content pane
 		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
+                contentPane.add(chooser, BorderLayout.SOUTH);
 		
 		this.setSize(800, 600);
 		
@@ -195,32 +206,32 @@ public class GUIHandler extends JFrame implements ActionListener, MouseListener,
 		
 		if(m_currentObject == null) {
 			if(m_mode.equals("LINE")) {
-				m_currentObject = new LineObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new LineObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("RECTANGLE")) {
-				m_currentObject = new RectangleObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new RectangleObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("SQUARE")) {
-				m_currentObject = new SquareObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new SquareObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("ELLIPSE")) {
-				m_currentObject = new EllipseObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new EllipseObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("CIRCLE")) {
-				m_currentObject = new CircleObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new CircleObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			else if(m_mode.equals("POLYGON")) {
-				m_currentObject = new PolygonObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new PolygonObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 				((PolygonObject) m_currentObject).addPoint(new Point(e.getX(), e.getY()));
 			}
 			else if(m_mode.equals("SCRIBBLE")) {
-				m_currentObject = new FreeHandObject(e.getX(), e.getY(), m_selectedColor);
+				m_currentObject = new FreeHandObject(e.getX(), e.getY(), chooser.getColor());
 				m_objHandler.add(m_currentObject);
 			}
 			
